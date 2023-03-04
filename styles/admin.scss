@@ -1,0 +1,51 @@
+.admin {
+	@apply flex bg-white min-h-screen h-fit;
+	overflow-y: hidden;
+	nav {
+		@apply bg-admin-nav-background font-viga text-center text-white min-h-screen fixed md:relative;
+		transition: all .5s;
+		overflow-x: hidden;
+		&[aria-expanded="false"]{
+			@apply min-w-[220px] w-[220px] md:min-w-[0px] md:w-[0px];
+		}
+		&[aria-expanded="true"] {
+			@apply min-w-[0px] w-[0px] md:min-w-[220px] md:w-[220px];
+		}
+		.menubutton {
+			@apply w-[20px] h-[40px] p-2 rounded-r bg-admin-nav-background
+			hover:bg-black;
+			transition: all .5s;
+			position: fixed;
+			top: 5rem;
+			&[aria-expanded="false"]{
+				@apply md:left-[0px] left-[220px];
+			}
+			&[aria-expanded="true"] {
+				@apply md:left-[220px] left-[0px];
+			}	
+		}
+		.menu {
+			@apply flex cursor-pointer rounded transition duration-300 h-[50px] p-4;
+		}
+	}
+	input {
+		@apply border border-gray-border text-sm;
+	}
+	
+	.controller {
+		@apply text-xs h-[70px] leading-[70px] px-4;
+	}
+	.content {
+		width: 100%;
+		min-width: calc(100% - 220px);
+		.head {
+			@apply h-[60px] leading-[60px] shadow bg-white text-black text-center font-viga text-2xl;
+		}
+		.container {
+			min-height: calc(100% - 60px);
+		}
+		&.login {
+			@apply bg-blue-100;
+		}
+	}
+}

@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	@apply bg-background;
+	overflow-x: hidden;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+	  display: none;
+	}
+}
+
+input {
+	@apply rounded px-4;
+}
+
+hr {
+	@apply mb-6;
+}
+
+table {
+	&.table_small {
+		@apply text-xs text-center;
+		tr {
+			@apply text-xs h-[25px] leading-[25px];
+		}
+		thead {
+			@apply border-b-2 border-gray-500;
+		}
+		tbody {
+			tr {
+				@apply border-b border-gray-500;
+			}
+		}
+	}
+	&.table_admin {
+		@apply w-full text-left;
+		tr {
+			@apply text-xs h-[50px] leading-[50px];
+		}
+		td, th{
+			@apply px-0 md:px-1 lg:px-4;
+			&:first-child {
+				@apply text-center;
+			}
+		}
+		thead{
+			@apply bg-blue-200 text-white shadow;
+			th {
+				&:first-child {
+					@apply rounded-tl;
+				}
+				&:last-child {
+					@apply rounded-tr;
+				}
+			}
+		}
+		tbody{
+			tr {
+				@apply border-b border-gray-300;
+				&:hover {
+					@apply bg-gray-100;
+				}
+			}
+		}
+	}
+}
+
+.btn {
+	@apply text-sm text-center transition duration-300;
+	&-white {
+		@apply bg-white text-black;
+		&:hover {
+			@apply bg-gray-100;
+		}
+	}
+	&-gray-border {
+		@apply border border-gray-500;
+		&:hover {
+			@apply bg-gray-500 text-white;
+		}
+	}
+	&-red {
+		@apply bg-red text-white;
+		&:hover {
+			@apply bg-red-hover;
+		}
+	}
+	&-blue-200 {
+		@apply bg-blue-200 text-white;
+		&:hover {
+			@apply bg-blue-200-hover;
+		}
+	}
+	&-blue-300 {
+		@apply bg-blue-300 text-white;
+		&:hover {
+			@apply bg-blue-300-hover;
+		}
+	}
+	&-pink {
+		@apply bg-pink text-white;
+		&:hover {
+			@apply bg-pink-hover;
+		}
+	}
+}

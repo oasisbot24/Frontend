@@ -14,17 +14,13 @@
 			hover:bg-black hover:ring-1 hover:ring-gray-500 focus:bg-black focus:ring-1 focus:ring-gray-500;
 		}
 		.menubox {
-			@apply w-full md:flex md:w-auto text-white font-semibold;
+			@apply w-full md:flex md:w-auto text-white font-medium;
 			overflow-y: hidden;
 			transition: all .3s;
 		}
 	}
 	input{
-		@apply w-full h-[40px] bg-gray-500 text-xs sm:text-sm
-		focus:outline-none focus:border-blue-300 focus:ring-1 focus:ring-blue-300
-		disabled:bg-gray-100 disabled:text-gray-500 disabled:border-gray-300 disabled:shadow-none
-		invalid:border-red invalid:text-red
-		focus:invalid:border-red focus:invalid:ring-red;
+		@apply bg-gray-500; 
 	}
 	.container {
 		min-height: calc(100% - 150px);

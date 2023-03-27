@@ -30,8 +30,8 @@ const Meta = () => {
       <meta name="twitter:image" content="/logo_share.jpg" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="naver-site-verification" content="40eb312ac05c49dfd059663a8b2c73331ee2ffea" />
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-BN5LDJV7MM" />
-      <Script dangerouslySetInnerHTML={{ __html: googleFunction}} />
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-BN5LDJV7MM" ></script>
+      <script dangerouslySetInnerHTML={{ __html: googleFunction}} ></script>
         
       <link rel="icon" href="/icon/favicon.svg" />
       <link rel="apple-touch-icon" href="/icon/favicon.svg" />

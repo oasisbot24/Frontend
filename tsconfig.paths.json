@@ -6,6 +6,7 @@
       "@styles/*": ["styles/*"],
       "@api/*": ["api/*"],
       "@interfaces/*": ["interfaces/*"],
+      "@init/*": ["init/*"],
       "@lib/*": ["lib/*"]
     }
   }

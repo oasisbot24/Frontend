@@ -1,39 +1,38 @@
-import UserType from "@interfaces/user";
+import { PointTopupType, PostPointTopupType } from "@interfaces/pointTopup";
 import { URL } from "@lib/constants";
 import axios from "axios";
+import getConfig from '@lib/getConfig';
+import AxiosResponseType from '@interfaces/axiosResponse';
 
-function getPointTopup() {
-	return new Promise<UserType>(async (resolve, reject) => {
-		try {
-			const res = await axios.get(URL + '/point_topup');
-			return resolve(res.data);
-		} catch (error) {
-			console.log(error);
-			return reject(error);
-		}
-	});
-}
-
-function getPointTopupLast() {
-	return new Promise<UserType>(async (resolve, reject) => {
-		try {
-			const res = await axios.get(URL + '/point_topup/last');
-			return resolve(res.data);
-		} catch (error) {
-			console.log(error);
-			return reject(error);
-		}
-	});
-}
-
-function postPointTopup() {
-	const body = {
-		amount : "",
-		tag : ""
+async function getPointTopup(token : string) {
+	try {
+		const res = await axios.get<AxiosResponseType>(URL + '/point_topup', getConfig(token));
+		return (res.data.data as PointTopupType[]);
+	} catch (error) {
+		console.log(error);
+		throw (error);
 	}
-	axios.post(URL + '/point_topup', body);
 }
 
+async function getPointTopupLast(token : string) {
+	try {
+		const res = await axios.get<AxiosResponseType>(URL + '/point_topup/last', getConfig(token));
+		return (res.data.data as PointTopupType);
+	} catch (error) {
+		console.log(error);
+		throw (error);
+	}
+}
+
+async function postPointTopup(body : PostPointTopupType, token : string) {
+	try {
+		const res = await axios.post<AxiosResponseType>(URL + '/point_topup', body, getConfig(token));
+		return ;
+	} catch (error) {
+		console.log(error);
+		throw (error);
+	}
+}
 
 export {
 	getPointTopup,

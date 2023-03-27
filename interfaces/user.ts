@@ -1,12 +1,39 @@
-type UserType = {
+interface UserType {
+	id : number
 	email : string
 	password : string
 	phone : string
 	nick_name : string
 	point : number
-	commision_rate : number
+	commission_rate : number
 	nft : number
 	"type" : number
 }
 
-export default UserType
+interface PostUserType {
+	email : string
+	password : string
+	phone : string
+	nick_name : string
+}
+
+interface PutUserType {
+	password : string
+	new_password : string
+	phone : string
+	nick_name : string
+}
+
+interface PutAdminUserType {
+	phone : string | null
+	nick_name : string | null
+	commission_rate : number | null
+	nft : number | null
+}
+
+export type {
+	UserType,
+	PostUserType,
+	PutUserType,
+	PutAdminUserType
+};

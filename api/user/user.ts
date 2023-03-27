@@ -1,63 +1,42 @@
-import UserType from "@interfaces/user";
+import { PutUserType, UserType } from "@interfaces/user";
 import { URL } from "@lib/constants";
 import axios from "axios";
+import { PostUserType } from "@interfaces/user";
+import getConfig from "@lib/getConfig";
+import AxiosResponseType from '@interfaces/axiosResponse';
 
-function getUser() {
-	return new Promise<UserType>(async (resolve, reject) => {
-		try {
-			const res = await axios.get(URL + '/user');
-			return resolve(res.data);
-		} catch (error) {
-			console.log(error);
-			return reject(error);
-		}
-	});
+async function getUser(token : string) {
+	try {
+		const res = await axios.get<AxiosResponseType>(URL + '/user', getConfig(token));
+		return (res.data.data as UserType);
+	} catch (error) {
+		console.log(error);
+		throw (error);
+	}
 }
 
-function postUser() {
-	const body = {
-		email : "",
-		password : "",
-		phone : "",
-		nick_name : ""
+async function postUser(body : PostUserType) {
+	try {
+		const res = await axios.post<AxiosResponseType>('/user', body);
+		return ;
+	} catch (error) {
+		console.log(error);
+		throw (error);
 	}
-	axios.post(URL + '/user', body);
 }
 
-function putUser() {
-	const body = {
-		email : "",
-		password : "",
-		phone : "",
-		nick_name : ""
+async function putUser(body : PutUserType ,token : string) {
+	try {
+		const res = await axios.put<AxiosResponseType>('/user', body, getConfig(token));
+		return ;
+	} catch (error) {
+		console.log(error);
+		throw (error);
 	}
-	axios.put(URL + '/user', body);
-}
-
-function patchUser() {
-	const body = {
-		email : "",
-		password : "",
-		phone : "",
-		nick_name : ""
-	}
-	axios.patch(URL + '/user', body);
-}
-
-function deleteUser() {
-	const body = {
-		email : "",
-		password : "",
-		phone : "",
-		nick_name : ""
-	}
-	axios.delete(URL + '/user');
 }
 
 export {
 	getUser,
 	postUser,
 	putUser,
-	patchUser,
-	deleteUser
 };

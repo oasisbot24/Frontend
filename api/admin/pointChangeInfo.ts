@@ -1,17 +1,16 @@
-import UserType from "@interfaces/user";
+import PointChangeInfoType from "@interfaces/pointChangeInfo";
 import { URL } from "@lib/constants";
+import getConfig from "@lib/getConfig";
 import axios from "axios";
 
-function getPointChangeInfo() {
-	return new Promise<UserType>(async (resolve, reject) => {
-		try {
-			const res = await axios.get(URL + '/point_change_info');
-			return resolve(res.data);
-		} catch (error) {
-			console.log(error);
-			return reject(error);
-		}
-	});
+async function getPointChangeInfo(token : string) {
+	try {
+		const res = await axios.get<PointChangeInfoType>(URL + '/point_change_info', getConfig(token));
+		return (res.data);
+	} catch (error) {
+		console.log(error);
+		throw(error);
+	}
 }
 
 export {

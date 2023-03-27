@@ -12,8 +12,22 @@ body {
 	}
 }
 
+form {
+	label {
+		@apply text-xs text-red;
+	}
+}
+
 input {
 	@apply rounded px-4;
+	&[type="text"], &[type="password"], &[type="email"], &[type="number"]{
+		@apply w-full h-[40px] text-xs sm:text-sm
+		focus:outline-none focus:border-blue-300 focus:ring-1 focus:ring-blue-300
+		disabled:bg-black disabled:text-gray-400 disabled:border disabled:border-gray-400 disabled:shadow-none;
+	}
+	&.error{
+		@apply ring-1 ring-red;
+	}
 }
 
 hr {
@@ -36,7 +50,8 @@ table {
 		}
 	}
 	&.table_admin {
-		@apply w-full text-left;
+		@apply w-full min-w-[580px] text-left;
+		overflow-x: scroll;
 		tr {
 			@apply text-xs h-[50px] leading-[50px];
 		}

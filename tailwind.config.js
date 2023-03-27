@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  important: true,
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
@@ -13,19 +14,19 @@ module.exports = {
       colors: {
         background: '#0c002e',
         green: '#007521',
-        red: '#CB0000',
-        'red-hover': '#aaaaaa',
+        red: '#FD2020',
+        'red-hover': '#a20000',
         yellow: '#FDFF82',
         
         'pink': '#FF4FF8',
-        'pink-hover': '#DA39D4',
+        'pink-hover': '#cc3fc6',
 
         'blue-100': '#D7E3F0',
         'blue-150': "#a2d3ed",
         'blue-200': '#4EAFE3',
         'blue-300': '#3A6FF8',
-        'blue-200-hover': '#aaAFE3',
-        'blue-300-hover': '#1D4ED8',
+        'blue-200-hover': '#3e8cb5',
+        'blue-300-hover': '#2e58c6',
 
         'gradient-100': '#6D09FF',
         'gradient-200': '#725af9',
@@ -50,6 +51,7 @@ module.exports = {
         card: '#000000CC',
       },
       fontSize: {
+        '2xs': '0.6rem',
         '5xl': '3rem',
         '6xl': '4rem',
         '7xl': '5rem',

@@ -1,4 +1,4 @@
-type PointChangeInfoType = {
+interface PointChangeInfoType {
 	create_date : string
 	type : number
 	detail : string

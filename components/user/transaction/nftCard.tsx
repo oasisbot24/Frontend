@@ -1,6 +1,7 @@
 import Card from '@components/user/card';
 import Title from '@components/user/title';
 import Image from 'next/image'
+import Link from 'next/link';
 
 export default function NftCard() {
   return (
@@ -17,7 +18,9 @@ export default function NftCard() {
 					<div className='font-bold'>1,000 KLAY</div>
 				</div>
 			</div>
-			<button className='btn btn-blue-300 rounded h-[25px]'>NFT 구매</button>
+			<Link href="https://opensea.io/collection/oasis-bot" target='_blank' className='w-full'>
+				<button className='btn btn-blue-300 rounded w-full h-[25px]'>NFT 구매</button>
+			</Link>
 		</Card>
   );
 }

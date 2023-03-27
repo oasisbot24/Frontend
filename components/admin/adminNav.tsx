@@ -20,7 +20,7 @@ const AdminNav = ({currentMenu} : Props) => {
         </div>
         {menuList.map((menu, index) => {
           return (
-            <AdminNavMenu key={index} menu={menu} src={"/icon/"+menu+".svg"} 
+            <AdminNavMenu key={index} menu={menu} src={"/icon/"+menu.toLowerCase()+".svg"} 
             className={index != menuList.length - 1 ? "mb-4": ""}
             selected={menu == currentMenu}/>
           )

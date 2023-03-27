@@ -1,11 +1,16 @@
 import Image from "next/image";
 
-function MookupImage(props) {
+type Props = {
+  src : string
+  description : string
+}
+
+function MookupImage({src, description} : Props) {
   return (
     <div className="mookup">
-      <Image src={props.src} alt="mookup" width={1000} height={1000} className="rounded-lg"/>
+      <Image src={src} alt="mookup" width={1000} height={1000} className="rounded-lg"/>
       <div className="description">
-        <div dangerouslySetInnerHTML={{__html:props.description}}></div>
+        <div dangerouslySetInnerHTML={{__html:description}}></div>
       </div>
     </div>
   ); 

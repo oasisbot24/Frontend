@@ -1,31 +1,31 @@
-import UserType from "@interfaces/user";
+import { TransactionType, PostTransactionType } from "@interfaces/transaction";
 import { URL } from "@lib/constants";
+import getConfig from "@lib/getConfig";
 import axios from "axios";
+import AxiosResponseType from '@interfaces/axiosResponse';
 
-function getTransaction() {
-	return new Promise<UserType>(async (resolve, reject) => {
-		try {
-			const res = await axios.get(URL + '/transaction');
-			return resolve(res.data);
-		} catch (error) {
-			console.log(error);
-			return reject(error);
-		}
-	});
+async function getAdminTransactions(token : string) {
+	try {
+		const res = await axios.get<AxiosResponseType>(URL + '/admin/transactions', getConfig(token));
+		return (res.data.data as TransactionType[]);
+	} catch (error) {
+		console.log(error);
+		throw (error);
+	}
 }
 
-function postTransaction() {
-	const body = {
-		email : "",
-		password : "",
-		phone : "",
-		nick_name : ""
+async function getAdminTransaction(userId : string, token : string) {
+	try {
+		const res = await axios.get(URL + '/admin/transaction/' + userId, getConfig(token));
+		return (res.data.data as TransactionType[]);
+	} catch (error) {
+		console.log(error);
+		throw (error);
 	}
-	axios.post(URL + '/transaction', body);
 }
 
 
 export {
-	getTransaction,
-	postTransaction
+	getAdminTransactions,
+	getAdminTransaction
 };

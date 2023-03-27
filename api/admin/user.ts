@@ -1,48 +1,41 @@
-import UserType from "@interfaces/user";
+import { UserType, PutAdminUserType } from '@interfaces/user';
 import { URL } from "@lib/constants";
 import axios from "axios";
+import getConfig from "@lib/getConfig";
+import AxiosResponseType from '@interfaces/axiosResponse';
 
-function getAdminUsers() {
-	return new Promise<UserType[]>(async (resolve, reject) => {
-		try {
-			const res = await axios.get(URL + '/admin/users');
-			return resolve(res.data);
-		} catch (error) {
-			console.log(error);
-			return reject(error);
-		}
-	});
-}
-
-function getAdminUser() {
-	return new Promise<UserType>(async (resolve, reject) => {
-		try {
-			const res = await axios.get(URL + '/admin/user');
-			return resolve(res.data);
-		} catch (error) {
-			console.log(error);
-			return reject(error);
-		}
-	});
-}
-
-function putAdminUser() {
-	const body = {
-		email : "",
-		password : "",
-		phone : "",
-		nick_name : ""
+async function getAdminUsers(token : string) {
+	try {
+		const res = await axios.get<AxiosResponseType>(URL + '/admin/users', getConfig(token));
+		return (res.data.data as UserType[]);
+	} catch (error) {
+		console.log(error);
+		throw (error);
 	}
-	axios.put(URL + '/admin/user', body);
 }
 
-function deleteAdminUser() {
-	axios.delete(URL + '/admin/user');
+async function getAdminUser(userid : number, token : string) {
+	try {
+		const res = await axios.get<AxiosResponseType>(URL + '/admin/user/' + userid.toString(), getConfig(token));
+		return (res.data.data as UserType);
+	} catch (error) {
+		console.log(error);
+		throw (error);
+	}
+}
+
+async function putAdminUser(userid : number, body : PutAdminUserType, token : string) {
+	try {
+		const res = await axios.put<AxiosResponseType>(URL + '/admin/user/' + userid.toString(), body, getConfig(token));
+		return ;
+	} catch (error) {
+		console.log(error);
+		throw (error);
+	}
 }
 
 export {
 	getAdminUsers,
 	getAdminUser,
-	putAdminUser,
-	deleteAdminUser
+	putAdminUser
 };

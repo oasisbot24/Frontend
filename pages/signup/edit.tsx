@@ -2,62 +2,80 @@ import Title from '@components/user/title'
 import Card from '@components/user/card'
 import UserFrame from '@components/user/userFrame'
 import { useForm } from 'react-hook-form';
-import { postUser } from '@api/user/user';
-import { PostUserType } from '@interfaces/user';
-import { checkEmail, checkPassword, checkPhone, checkNickName } from '@lib/check';
+import { putUser } from '@api/user/user';
+import { checkPassword, checkPhone, checkNickName } from '@lib/check';
 import { AxiosError } from 'axios';
 import router from "next/router";
 import Link from 'next/link';
+import useToken from '@lib/useToken';
+import { PutUserType, UserType } from '@interfaces/user';
+import { useEffect, useState } from 'react';
+import { createEdit } from '@lib/page/user';
+import { InitUserType } from '@init/user';
 
-interface SignupFormType extends PostUserType {
+interface SignupFormType extends PutUserType {
+  email : string
   password_confirm : string
   terms : boolean
 }
 
 export default function Home() {
-  const { register, handleSubmit, setError, formState: { errors } } = useForm<SignupFormType>();
-  
+  const { register, handleSubmit, setValue, setError, formState: { errors } } = useForm<SignupFormType>();
+  const [ user, setUser ] = useState<UserType>(InitUserType);
+  const { token } = useToken();
   const submitHandler = async (data : SignupFormType) => {
     try {
-      await postUser(data);
-      router.push("/signup/success");
+      await putUser(data, token);
+      router.push("/transaction");
     } catch (error) {
       const axiosError = error as AxiosError<any, any>;
 			if (axiosError.response?.status == 417) {
-        setError("email", {type: "duplicated", message: "중복된 이메일입니다"});
+        setError("root", {type: "duplicated", message: axiosError.response.data.msg});
 			}
     }
   };
+  useEffect(() => {
+    createEdit(token, setUser);
+  }, [])
+
+  useEffect(() => {
+    setValue("email", user.email);
+    setValue("phone", user.phone);
+    setValue("nick_name", user.nick_name);
+  }, [user]);
+
   return (
     <UserFrame className="user-background-dark">
       <Card className='w-full max-w-[400px] m-auto p-8 h-full'>
-        <Title className='mb-6'>Create your account</Title>
+        <Title className='mb-6'>Edit your account</Title>
         <form onSubmit={handleSubmit(submitHandler)} autoComplete='off' noValidate>
           <div className='mb-4'>
             <input className={errors.email && "error"} placeholder='Email' type='email' 
             {...register("email", {
-              required: {value: true, message: "이메일을 입력해주세요"},
-              validate: {
-                email: (value) => checkEmail(value) 
-                || "이메일 형식이 잘못되었습니다"
-              }
+              disabled: true
             })} />
-            <label>{errors.email?.message}</label>
           </div>
           <div className='mb-4'>
-            <input className={errors.password && "error"} placeholder='Password' type='password'
+            <input className={errors.password && "error"} placeholder='Current Password' type='password'
             {...register("password",{
-              required:{value: true, message: "비밀번호를 입력해주세요"},
-              minLength:{value: 10, message: "비밀번호를 10자이상 입력해주세요"}
+              required:{value: true, message: "기존 비밀번호를 입력해주세요"},
             })} />
             <label>{errors.password?.message}</label>
+          </div>
+          <div className='mb-4'>
+            <input className={errors.new_password && "error"} placeholder='New Password' type='password'
+            {...register("new_password",{
+              required:{value: true, message: "새 비밀번호를 입력해주세요"},
+              minLength:{value: 10, message: "비밀번호를 10자이상 입력해주세요"}
+            })} />
+            <label>{errors.new_password?.message}</label>
           </div>
           <div className='mb-4'>
             <input className={errors.password_confirm && "error"} placeholder='Confirm Password' type='password'
             {...register("password_confirm", {
               required:{value: true, message: "비밀번호를 확인해주세요"},
               validate: {
-                password_correct: (value, data) => checkPassword(data.password, value) 
+                password_correct: (value, data) => checkPassword(data.new_password, value) 
                 || "비밀번호가 일치하지 않습니다"
               }
             })} />
@@ -101,7 +119,7 @@ export default function Home() {
             <label>{errors.terms?.message}</label>
           </div>
           <button className='btn btn-pink rounded w-full h-[40px]' type='submit'>
-            Create
+           Edit 
           </button>
           <label>{errors.root?.message}</label>
         </form>

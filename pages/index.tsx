@@ -16,16 +16,18 @@ export default function Home() {
         <div className='text-7xl leading-13 sm:text-8xl sm:leading-14 mb-12'>
           OASIS<br/>BOT
         </div>
-        <button className='btn btn-blue-300 rounded mb-8 sm:mb-12 w-full sm:w-[350px] h-[50px]'>
-          OASIS BOT Download
-        </button>
+        <a href='https://github.com/DeveloperRyou/oasis/releases/download/v0.1.0/Oasis-Setup-0.1.0.exe' className='w-full'>
+          <button className='btn btn-blue-300 rounded mb-8 sm:mb-12 w-full sm:w-[350px] h-[50px]'>
+            OASIS BOT Download
+          </button>
+        </a>
         <Link href="signin" className='w-full'>
           <button className='btn btn-pink mb-4 rounded w-full sm:w-[350px] h-[50px]'>
           Sign in
           </button>
         </Link>
         <Link href="signup">
-          <div className='text-sm text-yellow w-fit'>
+          <div className='text-sm hover:text-yellow w-fit'>
             New to OASIS Account? Sign up now.
           </div>
         </Link>

@@ -1,8 +1,16 @@
-type PointChangeInfoType = {
+interface PointTopupType {
 	create_date : string
-	tag : string
 	amount : number
+	tag : string
 	condition : number
 }
 
-export default PointChangeInfoType
+interface PostPointTopupType {
+	amount : number
+	tag : string
+}
+
+export type {
+	PointTopupType,
+	PostPointTopupType
+}

@@ -1,10 +1,12 @@
 import Icon from "@components/basic/icon"
+import { UserType } from '@interfaces/user';
 
 type Props = {
+  user: UserType
 	className?: string
 }
 
-const ControlPoint = ({className}:Props) => {
+const ControlPoint = ({user, className}:Props) => {
   return (
 	  <div className={""+(className ?? '')}>
       <div className="bg-white flex justify-between text-blue-200 rounded-t px-4 py-2">
@@ -21,7 +23,7 @@ const ControlPoint = ({className}:Props) => {
       <div className="bg-gray-100 px-2 py-2 flex justify-between">
         <input className="h-[30px] w-1/2" placeholder="+10000"/>
         <div className="text-xs font-bold my-auto">
-          분배후 포인트 : 30,000
+          분배후 포인트 : {user.point}
         </div>
       </div>
 	  </div>

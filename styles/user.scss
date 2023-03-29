@@ -2,10 +2,10 @@
 	&-background {
 		&-dark {
 			background : linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/background.png");
+			background-repeat : no-repeat;
 		}
 		background-image: url("/background.png");
 		background-repeat : no-repeat;
-		background-size : cover;
 	}
 	nav {
 		@apply min-h-[100px];
@@ -23,7 +23,7 @@
 		@apply bg-gray-500; 
 	}
 	.container {
-		min-height: calc(100% - 150px);
+		min-height: calc(100vh - 150px);
 	}
 	.card {
 		@apply bg-card rounded text-white flex flex-col border border-gray-500;
@@ -63,4 +63,25 @@
 			}
 		}
 	}
+
+	.highlight {
+		@keyframes animate-text-plus {
+			0% {
+				@apply text-green;
+			}
+		}
+		@keyframes animate-text-minus {
+			0% {
+				@apply text-red;
+			}
+		}
+		&-text{
+			&-plus {
+				animation: animate-text-plus 1.5s ease-in;
+			}
+			&-minus {
+				animation: animate-text-minus 1.5s ease-in;
+			}
+		} 
+  	}
 }

@@ -7,7 +7,7 @@ type Props = {
   
 const Icon = ({src, className}: Props) => {
 	return (
-    <Image alt="icon" src={src} width={24} height={24} className={"h-full "+(className ?? '')}/>
+    <Image alt="icon" src={src} width={24} height={24} className={(className ?? '')}/>
 	)
 }
   

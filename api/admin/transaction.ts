@@ -14,9 +14,9 @@ async function getAdminTransactions(token : string) {
 	}
 }
 
-async function getAdminTransaction(userId : string, token : string) {
+async function getAdminTransaction(userid : number, token : string) {
 	try {
-		const res = await axios.get(URL + '/admin/transaction/' + userId, getConfig(token));
+		const res = await axios.get<AxiosResponseType>(URL + '/admin/transaction/' + userid.toString(), getConfig(token));
 		return (res.data.data as TransactionType[]);
 	} catch (error) {
 		console.log(error);

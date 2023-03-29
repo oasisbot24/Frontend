@@ -15,22 +15,24 @@ export default function Home() {
   const {token} = useToken();
   const [user, setUser] = useState<UserType>(InitUserType);
   const [transaction, setTransaction] = useState<TransactionType[]>([]);
-
+  
   useEffect(()=>{
     createTransaction(token, setUser, setTransaction);
   }, [])
   return (
-      <UserFrame className="user-background-dark" containerClassName='lg:grid-flow-col'>
-        <div className='flex flex-col lg:mr-4 mb-4 lg:mb-0 order-2 lg:order-1'>
-          <div className='flex flex-col w-50 sm:flex-row mb-4'>
-            <NftCard />
-            <CoinGroup/>
+      <UserFrame className="user-background-dark">
+        <div className='flex flex-col lg:flex-row w-full '>
+          <div className='w-full flex flex-col mr-0 lg:mr-4 mb-4 lg:mb-0 order-2 lg:order-1'>
+            <div className='flex flex-col sm:flex-row mb-4'>
+              <NftCard />
+              <CoinGroup/>
+            </div>
+            <DiscriptCard />
           </div>
-          <DiscriptCard />
-        </div>
-        <div className='flex flex-col w-50 lg:ml-4 mb-4 lg:mb-0 order-1 lg:order-2'>
-          <UserInformationCard user={user} />
-          <TransactionCard transaction={transaction}/>
+          <div className='flex flex-col w-full ml-0 lg:ml-4 mb-4 lg:mb-0 order-1 lg:order-2'>
+            <UserInformationCard user={user} />
+            <TransactionCard transaction={transaction}/>
+          </div>
         </div>
       </UserFrame>
   )

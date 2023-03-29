@@ -9,16 +9,21 @@ import PostSignin from '@api/signin';
 import { AxiosError } from 'axios';
 import { checkEmail } from '@lib/check';
 import useToken from '@lib/useToken';
+import { useState } from 'react';
 
 export default function Home() {
   const { register, handleSubmit, setError, formState: { errors } } = useForm<PostSigninType>();
   const { setToken } = useToken();
+  const [signed, setSigned] = useState<boolean>(false);
+
   const submitHandler = async (data : PostSigninType) => {
     try {
+      setSigned(true);
       const res = await PostSignin(data);
       setToken(res.token);
       router.push("/transaction");
     } catch (error) {
+      setSigned(false);
       const axiosError = error as AxiosError<any, any>;
       if (axiosError.response?.status == 417)
         setError("root", {type: "unauthorized", message: axiosError.response?.data.msg});
@@ -47,9 +52,15 @@ export default function Home() {
               })} />
               <label>{errors.password?.message}</label>
             </div>
-            <button className='btn btn-pink rounded w-full h-[40px]' type='submit'>
-              Sign In
-            </button>
+            {signed ? (
+              <div className='bg-gray-500 text-center text-sm rounded w-full h-[40px] leading-[40px]'>
+                Signing...
+              </div>
+            ) : (
+              <button className='btn btn-pink rounded w-full h-[40px]' type='submit'>
+                Sign In
+              </button>
+            )}
             <label>{errors.root?.message}</label>
           </form>
           <div className='flex justify-between font-viga text-sm mt-4'>

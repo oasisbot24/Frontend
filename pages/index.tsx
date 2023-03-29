@@ -8,7 +8,7 @@ import data from '@lib/data';
 
 export default function Home() {
   return (
-    <UserFrame className='user-background home'>
+    <UserFrame className='home user-background'>
       <div className='text-white font-viga flex flex-col w-full my-12'>
         <div className='text-xl sm:text-2xl mb-2'>
           Find your optimus bot

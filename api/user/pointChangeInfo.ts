@@ -2,7 +2,7 @@ import { URL } from "@lib/constants";
 import getConfig from "@lib/getConfig";
 import axios from "axios";
 import AxiosResponseType from '@interfaces/axiosResponse';
-import PointChangeInfoType from "@interfaces/pointChangeInfo";
+import {PointChangeInfoType} from "@interfaces/pointChangeInfo";
 
 async function getPointChangeInfo(token : string) {
 	try {

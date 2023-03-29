@@ -27,7 +27,7 @@ export default function Home() {
     <AdminFrame currnetMenu='Login' className='login'>
       <div className='flex flex-col w-full max-w-[400px] h-[580px] rounded-xl bg-white shadow m-auto p-12'>
         <div className='w-full h-[100px] mb-12'>
-          <Icon src='/icon/favicon.svg' className='w-full' />
+          <Icon src='/icon/favicon.svg' className='w-full h-full' />
         </div>
         <div className='font-viga text-center text-xl mb-8'>Administrator</div>
         <div className='pr-8 h-[30px] border-gray-border border-b w-fit text-sm mb-4'>Signin</div>

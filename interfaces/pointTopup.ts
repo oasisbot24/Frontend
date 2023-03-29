@@ -1,5 +1,7 @@
+import { UserType } from '@interfaces/user';
 interface PointTopupType {
 	create_date : string
+	user : UserType
 	amount : number
 	tag : string
 	condition : number

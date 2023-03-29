@@ -1,4 +1,6 @@
+import { UserType } from '@interfaces/user';
 interface TransactionType {
+	user : UserType
 	date : string
 	exchange : string
 	"type" : string

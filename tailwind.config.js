@@ -12,7 +12,7 @@ module.exports = {
         'viga': ['Viga'],
       },
       colors: {
-        background: '#0c002e',
+        background: '#010101',
         green: '#007521',
         red: '#FD2020',
         'red-hover': '#a20000',

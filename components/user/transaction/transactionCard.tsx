@@ -12,7 +12,7 @@ type Props = {
 
 export default function TransactionCard({transaction} : Props) {
   const thead = ["주문시간", "종목", "포지션", "체결금액", "포인트"];
-  const [ tbody, setTbody ] = useState<string[][]>([]);
+  const [ tbody, setTbody ] = useState<any[][]>([]);
   const { token } = useToken();
   const onClickPost = () => {
     let test = InitTransactionType;
@@ -31,7 +31,7 @@ export default function TransactionCard({transaction} : Props) {
 
   useEffect(()=>{
     let temp = [];
-    for(let i=0; i<transaction.length; i++){
+    for(let i=0; i<transaction.length && i < 15; i++){
       let point = '';
       if (transaction[i].point == null || transaction[i].point == 0){
         point = '-';
@@ -51,7 +51,7 @@ export default function TransactionCard({transaction} : Props) {
   );
 
 	return (
-        <Card className='h-full p-4'>
+        <Card className='h-full p-4 table_parent'>
           <div className='flex justify-between mb-4'>
             <div className="text-md sm:text-lg font-semibold">Transaction</div>
             <div>

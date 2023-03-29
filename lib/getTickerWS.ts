@@ -20,11 +20,7 @@ function getTickerWS(coinlist : string[], callback : (json : CoinTickerWS) => vo
     reader.readAsText(event.data);
   };
   ws.onopen = (event) => {
-    console.log('WebSocket open: ', JSON.stringify(data));
     ws.send(JSON.stringify(data));
-  };
-  ws.onclose = (event) => {
-    console.log('WebSocket close: ', event);
   };
   ws.onerror = (event) => {
     console.log('WebSocket error: ', event);

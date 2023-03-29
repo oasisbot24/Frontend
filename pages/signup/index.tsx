@@ -8,6 +8,7 @@ import { checkEmail, checkPassword, checkPhone, checkNickName } from '@lib/check
 import { AxiosError } from 'axios';
 import router from "next/router";
 import Link from 'next/link';
+import { useState } from 'react';
 
 interface SignupFormType extends PostUserType {
   password_confirm : string
@@ -16,12 +17,15 @@ interface SignupFormType extends PostUserType {
 
 export default function Home() {
   const { register, handleSubmit, setError, formState: { errors } } = useForm<SignupFormType>();
-  
+  const [submitted, setSubmitted] = useState<boolean>(false);
+
   const submitHandler = async (data : SignupFormType) => {
     try {
+      setSubmitted(true);
       await postUser(data);
       router.push("/signup/success");
     } catch (error) {
+      setSubmitted(false);
       const axiosError = error as AxiosError<any, any>;
 			if (axiosError.response?.status == 417) {
         setError("email", {type: "duplicated", message: "중복된 이메일입니다"});
@@ -100,9 +104,15 @@ export default function Home() {
             </div>
             <label>{errors.terms?.message}</label>
           </div>
-          <button className='btn btn-pink rounded w-full h-[40px]' type='submit'>
-            Create
-          </button>
+          {submitted ? (
+            <div className='bg-gray-500 text-center text-sm rounded w-full h-[40px] leading-[40px]'>
+              Creating...
+            </div>
+          ) : (
+            <button className='btn btn-pink rounded w-full h-[40px]' type='submit'>
+              Create
+            </button>
+          )}
           <label>{errors.root?.message}</label>
         </form>
       </Card>

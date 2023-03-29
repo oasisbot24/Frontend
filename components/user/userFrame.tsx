@@ -11,7 +11,7 @@ type Props = {
 const UserFrame = ({ children, className, containerClassName }: Props) => {
   return (
     <Layout>
-      <main className={"user h-screen "+(className ?? '')}>
+      <main className={"user min-h-screen "+(className ?? '')}>
         <UserNav />
         <Contact />
         <div className={"container mx-auto px-8 pb-8 grid "+(containerClassName ?? '')}>

@@ -34,9 +34,17 @@ hr {
 	@apply mb-6;
 }
 
+.table_parent {
+	max-width: calc(100vw - 4rem);
+	overflow-x: auto;
+	&::-webkit-scrollbar {
+		height: 0;
+	}
+}
+
 table {
 	&.table_small {
-		@apply text-xs text-center;
+		@apply text-xs w-full min-w-[420px] text-center;
 		tr {
 			@apply text-xs h-[25px] leading-[25px];
 		}

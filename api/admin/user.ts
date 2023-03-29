@@ -26,7 +26,17 @@ async function getAdminUser(userid : number, token : string) {
 
 async function putAdminUser(userid : number, body : PutAdminUserType, token : string) {
 	try {
-		const res = await axios.put<AxiosResponseType>(URL + '/admin/user/' + userid.toString(), body, getConfig(token));
+		const res = await axios.put(URL + '/admin/user/' + userid.toString(), body, getConfig(token));
+		return ;
+	} catch (error) {
+		console.log(error);
+		throw (error);
+	}
+}
+
+async function deleteAdminUser(userid : number, token : string) {
+	try {
+		const res = await axios.delete(URL + '/admin/user/' + userid.toString(), getConfig(token));
 		return ;
 	} catch (error) {
 		console.log(error);
@@ -37,5 +47,6 @@ async function putAdminUser(userid : number, body : PutAdminUserType, token : st
 export {
 	getAdminUsers,
 	getAdminUser,
-	putAdminUser
+	putAdminUser,
+	deleteAdminUser
 };

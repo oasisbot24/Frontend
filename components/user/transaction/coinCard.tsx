@@ -2,6 +2,7 @@ import Icon from "@components/basic/icon";
 import Card from "@components/user/card";
 import CoinTickerWS from "@interfaces/coinTickerWS";
 import Image from "next/image";
+import { useState, useEffect } from 'react';
 
 type Props = {
 	className?: string
@@ -10,6 +11,24 @@ type Props = {
 }
 
 export default function CoinCard({coin, code, className} : Props) {
+  const [ticker, setTicker] = useState<CoinTickerWS>();
+  const [animate, setAnimate] = useState("");
+  
+  useEffect(()=>{
+    if (ticker != undefined && coin != undefined) {
+      if (ticker.trade_price < coin.trade_price)
+      {
+        setAnimate("");
+        setAnimate("plus");
+      }
+      else if (ticker.trade_price > coin.trade_price)
+      {
+        setAnimate("");
+        setAnimate("minus");
+      }
+    }
+    setTicker(coin);
+  }, [coin]);
 	return (
     <Card className={"h-full p-4 "+className}>
       <div className="flex justify-between mb-4">
@@ -21,8 +40,8 @@ export default function CoinCard({coin, code, className} : Props) {
         {coin && coin.signed_change_rate < 0 && <Icon src="/icon/down.svg" className="w-[8px]"/>}
       </div>
       <div className="flex justify-between">
-        <div className="font-semibold">
-          <div className="text-sm mb-1">{coin?.trade_price} KRW</div>
+        <div className="font-normal">
+          <div className={"text-sm mb-1 highlight-text-"+animate}>{coin?.trade_price} KRW</div>
           <div className={"text-xs "+(coin && coin.signed_change_rate >= 0 ? "text-green" : "text-red")}>
             {coin && coin.signed_change_rate >= 0 && "+"}
             {coin && (coin.signed_change_rate*100).toFixed(2)}%

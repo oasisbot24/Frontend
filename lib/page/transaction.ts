@@ -6,15 +6,13 @@ import router from 'next/router';
 
 async function createTransaction(token : string, setUser : Function, setTransaction : Function) {
 	try {
-		//if (token === "") throw new Error("token is null");
-		//getTransaction(token);
+		if (token === "") throw new Error("token is null");
 		const user = await getUser(token);
 		setUser(user);
 		const transaction = await getTransaction(token);
 		setTransaction(transaction);
 	} catch (error) {
-		console.log(error);
-		//router.push("/signin");
+		router.push("/signin");
 	}
 }
 

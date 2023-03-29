@@ -12,24 +12,28 @@ import { useEffect, useState } from 'react';
 import { createPointshop } from '@lib/page/pointshop'
 
 export default function Home() {
-  const { register, handleSubmit, setError, formState: { errors } } = useForm<PostPointTopupType>();
+  const { register, handleSubmit, setError, setValue, formState: { errors } } = useForm<PostPointTopupType>();
   const { token } = useToken();
-  const [pointTopup, setPointTopup] = useState<PointTopupType>({
-    create_date: "", amount : 0 ,tag : "" ,condition : -1
+  const [pointTopup, setPointTopup] = useState<{amount : number, tag : string, condition : number}>({
+    amount : 0 ,tag : "" ,condition : -1
   });
   const submitHandler = async (data : PostPointTopupType) => {
     try {
+      setPointTopup({amount : data.amount, tag : data.tag, condition : 0});
       await postPointTopup(data, token);
-      setPointTopup({
-        create_date: "", amount : data.amount ,tag : data.tag, condition : 0
-      });
     } catch (error) {
+      setPointTopup({amount : data.amount, tag : data.tag, condition : -1});
       const axiosError = error as AxiosError<any, any>;
 			if (axiosError.response?.status == 417) {
         setError("root", {type: "pending", message: axiosError.response?.data.msg});
 			}
     }
   }
+
+  useEffect(()=>{
+    setValue("amount", pointTopup.amount);
+    setValue("tag", pointTopup.tag);
+  }, [pointTopup]);
 
   useEffect(()=>{
     createPointshop(token, setPointTopup);
@@ -40,34 +44,30 @@ export default function Home() {
           <Title className='mb-6'>Point shop</Title>
           <div className='mb-6'>
             <div className='text-sm font-bold mb-2'>Deposit address</div>
-            <div className='text-xs mb-2'>기업은행 / 오아시스 주식회사 / 451-031087-01-0xx</div>
+            <div className='text-xs mb-2'>기업은행 / 이주원 오아시스 / 566-055599-01-012</div>
             <div className='text-xs text-red'>입금 후 제출 해주시기 바랍니다.</div>
           </div>
           <form className='mb-6 flex flex-col' onSubmit={handleSubmit(submitHandler)} autoComplete='off' noValidate>
             <div className='mb-4'>
               <div className='text-sm font-bold mb-2'>Buy points</div>
-              {pointTopup.condition !== 0 ? (
               <input placeholder='Ex : 50,000 (* 10,000 Krw = 10,000 Point)' type='text' 
+              disabled={pointTopup.condition == 0}
               {...register("amount", {
                 required: {value: true, message: "포인트를 입력해주세요"},
                 validate: {
                   amount: (value) => checkPoint(value.toString()) 
                   || "포인트 형식이 잘못되었습니다"
                 },
-              })}/>) : (
-                <input value={pointTopup.amount} type='text' disabled />
-              )}
+              })}/>
               <label>{errors.amount?.message}</label>
             </div>
             <div className='mb-4'>
               <div className='text-sm font-bold mb-2'>Deposit tag</div>
-              {pointTopup.condition !== 0 ? (
               <input placeholder='Ex : 전화번호 + 실명' type='text'
+              disabled={pointTopup.condition == 0}
               {...register("tag", {
                 required: {value: true, message: "태그를 입력해주세요"},
-              })}/> ) : (
-                <input value={pointTopup.tag} type='text' disabled />
-              )}
+              })}/>
               <label>{errors.tag?.message}</label>
             </div>
             <label>{errors.root?.message}</label>

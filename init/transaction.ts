@@ -1,6 +1,8 @@
+import { InitUserType } from "@init/user";
 import { TransactionType } from "@interfaces/transaction";
 
 const InitTransactionType : TransactionType = {
+	user : InitUserType,
 	date : '',
 	exchange : '',
 	"type" : '',

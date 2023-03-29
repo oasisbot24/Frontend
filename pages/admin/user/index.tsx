@@ -2,12 +2,12 @@ import AdminFrame from '@components/admin/adminFrame';
 import Table from '@components/table/table';
 import TableController from '@components/table/tableController';
 import TableNav from '@components/table/tableNav';
-import { createAdminUserIndex } from '@lib/page/adminuser';
 import { useState, useEffect } from 'react';
 import useToken from '@lib/useToken';
 import { UserType } from '@interfaces/user';
 import Link from 'next/link';
 import Icon from '@components/basic/icon';
+import { createAdminUsers } from '@lib/page/adminUser';
 
 function EditUser({userid} : {userid : number}) {
   return (
@@ -18,18 +18,20 @@ function EditUser({userid} : {userid : number}) {
 }
 
 export default function Home() {
-  const thead = ["index", "Name", "Phone Number", "Point", "Commision Rate", "Hold NFT", "Control"];
+  const thead = ["index", "Type", "Name", "Phone Number", "Point", "Commision Rate", "Hold NFT", "Control"];
   const [tbody, setTbody] = useState<any[][]>([]);
   const [users, setUsers] = useState<UserType[]>([]);
   const {token} = useToken();
   useEffect(()=>{
-    createAdminUserIndex(token, setUsers);
+    createAdminUsers(token, setUsers);
   }, []);
   useEffect(()=>{
     const new_tbody : any[][] = [];
+    if (users.length === 0) return setTbody([]);
     users.map((user, index)=>{
       new_tbody.push([
         (index+1).toString(), 
+        (user.type == 0 ? "승인대기중" : user.type == 1 ? "관리자" : "유저"),
         user.nick_name, 
         user.phone, 
         user.point.toString(),
@@ -44,7 +46,9 @@ export default function Home() {
     <AdminFrame currnetMenu='User'>
       <div className='mt-8'>
         <TableNav className="mb-8" />
-        <Table thead={thead} tbody={tbody} className='table_admin'/>
+        <div className='table_parent'>
+          <Table thead={thead} tbody={tbody} className='table_admin'/>
+        </div>
         <TableController />
       </div>
     </AdminFrame>

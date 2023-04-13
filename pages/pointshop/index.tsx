@@ -6,21 +6,19 @@ import { useForm } from 'react-hook-form'
 import { PointTopupType, PostPointTopupType } from '@interfaces/pointTopup'
 import { checkPoint } from '@lib/check'
 import { postPointTopup } from '@api/user/pointTopup'
-import useToken from '@lib/useToken'
 import { AxiosError } from 'axios'
 import { useEffect, useState } from 'react';
 import { createPointshop } from '@lib/page/pointshop'
 
 export default function Home() {
   const { register, handleSubmit, setError, setValue, formState: { errors } } = useForm<PostPointTopupType>();
-  const { token } = useToken();
   const [pointTopup, setPointTopup] = useState<{amount : number, tag : string, condition : number}>({
     amount : 0 ,tag : "" ,condition : -1
   });
   const submitHandler = async (data : PostPointTopupType) => {
     try {
       setPointTopup({amount : data.amount, tag : data.tag, condition : 0});
-      await postPointTopup(data, token);
+      await postPointTopup(data);
     } catch (error) {
       setPointTopup({amount : data.amount, tag : data.tag, condition : -1});
       const axiosError = error as AxiosError<any, any>;
@@ -36,7 +34,7 @@ export default function Home() {
   }, [pointTopup]);
 
   useEffect(()=>{
-    createPointshop(token, setPointTopup);
+    createPointshop(setPointTopup);
   }, []);
   return (
       <UserFrame className="user-background-dark">

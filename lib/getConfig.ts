@@ -1,10 +1,12 @@
+import { getToken } from "@lib/token";
 import { AxiosRequestConfig } from "axios"
-import useToken from '@lib/useToken';
 
-function getConfig(token : string) {
+function getConfig() {
+	const token = getToken();
 	const config : AxiosRequestConfig = {
 		headers: {
-			Authorization: "Bearer " + token
+			Authorization: "Bearer " + token.token,
+			AuthorizationRefresh: "Bearer " + token.refresh_token
 		}
 	}
 	return config;

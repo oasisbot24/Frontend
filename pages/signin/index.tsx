@@ -8,19 +8,18 @@ import { PostSigninType } from '@interfaces/signin';
 import PostSignin from '@api/signin';
 import { AxiosError } from 'axios';
 import { checkEmail } from '@lib/check';
-import useToken from '@lib/useToken';
 import { useState } from 'react';
+import { setToken } from '@lib/token';
 
 export default function Home() {
   const { register, handleSubmit, setError, formState: { errors } } = useForm<PostSigninType>();
-  const { setToken } = useToken();
   const [signed, setSigned] = useState<boolean>(false);
 
   const submitHandler = async (data : PostSigninType) => {
     try {
       setSigned(true);
       const res = await PostSignin(data);
-      setToken(res.token);
+      setToken(res);
       router.push("/transaction");
     } catch (error) {
       setSigned(false);

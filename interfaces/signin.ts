@@ -3,11 +3,12 @@ interface PostSigninType {
 	password : string
 }
 
-interface SigninType {
+interface TokenType {
 	token : string
+	refresh_token : string
 }
 
 export type {
 	PostSigninType,
-	SigninType
+	TokenType
 };

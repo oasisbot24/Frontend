@@ -5,7 +5,6 @@ import TableController from '@components/table/tableController';
 import TableNav from '@components/table/tableNav';
 import { PointTopupType } from '@interfaces/pointTopup';
 import { createAdminPointTopups } from '@lib/page/adminPointTopup';
-import useToken from '@lib/useToken';
 import { useState, useEffect } from 'react';
 
 function setPointTopupsCondition(index : number, condition : number, setPointTopups : Function) {
@@ -17,11 +16,11 @@ function setPointTopupsCondition(index : number, condition : number, setPointTop
 }
 
 function PendingPoint({index, userid, setPointTopups} : {index : number, userid : number, setPointTopups : Function}) {
-  const {token} = useToken();
+  
   const Submit = async ()=>{
     try {
       setPointTopupsCondition(index, 3, setPointTopups);
-      await putAdminPointTopup(userid, true, token);
+      await putAdminPointTopup(userid, true);
       setPointTopupsCondition(index, 1, setPointTopups);
     } catch (error) {
       setPointTopupsCondition(index, 0, setPointTopups);
@@ -30,7 +29,7 @@ function PendingPoint({index, userid, setPointTopups} : {index : number, userid 
   const Deny = async ()=>{
     try {
       setPointTopupsCondition(index, 3, setPointTopups);
-      await putAdminPointTopup(userid, false, token);
+      await putAdminPointTopup(userid, false);
       setPointTopupsCondition(index, 2, setPointTopups);
     } catch (error) {
       setPointTopupsCondition(index, 0, setPointTopups);
@@ -70,9 +69,9 @@ export default function Home() {
   const thead = ["index", "User", "Date", "Amount", "Tag", "Control"];
   const [tbody, setTbody] = useState<any[][]>([]);
   const [pointTopups, setPointTopups] = useState<PointTopupType[]>([]);
-  const {token} = useToken();
+  
   useEffect(()=>{
-    createAdminPointTopups(token, setPointTopups);
+    createAdminPointTopups(setPointTopups);
   }, []);
   useEffect(()=>{
     const new_pointTopups : any[][] = [];

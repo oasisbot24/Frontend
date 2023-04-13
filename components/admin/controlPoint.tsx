@@ -1,7 +1,6 @@
 import Icon from "@components/basic/icon"
 import { PostPointChangeInfoType } from "@interfaces/pointChangeInfo";
 import { UserType } from '@interfaces/user';
-import useToken from '@lib/useToken';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { postAdminPointChangeInfo } from "@api/admin/pointChangeInfo";
@@ -14,7 +13,7 @@ type Props = {
 
 const ControlPoint = ({user, className}:Props) => {
   const { register, handleSubmit, watch, setError, formState: { errors } } = useForm<PostPointChangeInfoType>();
-  const {token} = useToken();
+  
   const [saved , setSaved] = useState("");
 
   const SubmitHandler = async (data : PostPointChangeInfoType) => {
@@ -23,7 +22,7 @@ const ControlPoint = ({user, className}:Props) => {
       if (Number.isNaN(data.amount))
         setError("root", {type: "fail", message: "포인트는 숫자만 입력해주세요"});
       else {
-        await postAdminPointChangeInfo(user.id, data, token);
+        await postAdminPointChangeInfo(user.id, data);
         setSaved("저장되었습니다");
       }
     } catch (error) {

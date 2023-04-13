@@ -1,21 +1,20 @@
 import AdminFrame from '@components/admin/adminFrame';
 import Icon from '@components/basic/icon';
 import { useForm } from 'react-hook-form';
-import useToken from '@lib/useToken';
 import { PostSigninType } from '@interfaces/signin';
 import PostSignin from '@api/signin';
 import router from 'next/router';
 import { AxiosError } from 'axios';
 import { checkEmail } from '@lib/check';
+import { setToken } from '@lib/token';
 
 
 export default function Home() {
   const { register, handleSubmit, setError, formState: { errors } } = useForm<PostSigninType>();
-  const { setToken } = useToken();
   const submitHandler = async (data : PostSigninType) => {
     try {
       const res = await PostSignin(data);
-      setToken(res.token);
+      setToken(res);
       router.push("/admin/user");
     } catch (error) {
       const axiosError = error as AxiosError<any, any>;

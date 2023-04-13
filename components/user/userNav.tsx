@@ -1,4 +1,4 @@
-import useToken from '@lib/useToken';
+import { getToken } from '@lib/token';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
@@ -34,12 +34,12 @@ const Menu = (menuOpen : boolean, token : string) => {
 
 const UserNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { token } = useToken();
-  const [menu, setMenu] = useState(Menu(menuOpen, token));
+  const [menu, setMenu] = useState(Menu(menuOpen, ""));
 
   useEffect(() => {
-    setMenu(Menu(menuOpen, token));
-  }, [token, menuOpen])
+    const token = getToken();
+    setMenu(Menu(menuOpen, token.token));
+  }, [menuOpen])
   return (
     <nav className='flex'>
       <div className="flex flex-wrap items-center justify-between align-middle w-full px-8 mt-6 mb-6">

@@ -3,7 +3,6 @@ import Table from "@components/table/table";
 import Card from "@components/user/card";
 import { InitTransactionType } from "@init/transaction";
 import { TransactionType } from "@interfaces/transaction";
-import useToken from "@lib/useToken";
 import { useState, useEffect } from 'react';
 
 type Props = {
@@ -13,7 +12,6 @@ type Props = {
 export default function TransactionCard({transaction} : Props) {
   const thead = ["주문시간", "종목", "포지션", "체결금액", "포인트"];
   const [ tbody, setTbody ] = useState<any[][]>([]);
-  const { token } = useToken();
   const onClickPost = () => {
     let test = InitTransactionType;
     test.date = "2021-01-16T22:56:00";
@@ -26,7 +24,7 @@ export default function TransactionCard({transaction} : Props) {
     test.profit_loss = null;
     test.profit_loss_rate = null;
     test.point = null;
-    postTransaction(test, token);
+    postTransaction(test);
   }
 
   useEffect(()=>{

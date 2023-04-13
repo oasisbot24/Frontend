@@ -3,17 +3,16 @@ import Table from '@components/table/table';
 import TableController from '@components/table/tableController';
 import TableNav from '@components/table/tableNav';
 import { useState, useEffect } from 'react';
-import useToken from '@lib/useToken';
 import { TransactionType } from '@interfaces/transaction';
 import { createAdminTransactions } from '@lib/page/adminTransaction';
 
 export default function Home() { 
-  const thead = ["index", "User", "Date", "Type", "Total price", "PL Rate", "Point"];
+  const thead = ["index", "User", "Date", "Type", "Position", "Total price", "PL Rate", "Point"];
   const [tbody, setTbody] = useState<any[][]>([]);
   const [transactions, setTransactions] = useState<TransactionType[]>([]);
-  const {token} = useToken();
+  
   useEffect(()=>{
-    createAdminTransactions(token, setTransactions);
+    createAdminTransactions(setTransactions);
   }, []);
   useEffect(()=>{
     const new_transactions : any[][] = [];
@@ -24,6 +23,7 @@ export default function Home() {
         transaction.user.nick_name,
         transaction.date,
         transaction.type,
+        transaction.position,
         transaction.total_price,
         transaction.profit_loss_rate+" %",
         transaction.point

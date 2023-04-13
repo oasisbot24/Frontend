@@ -6,7 +6,6 @@ import { InitUserType } from '@init/user';
 import { UserType } from '@interfaces/user';
 import { createAdminUser } from '@lib/page/adminUser';
 import { useEffect, useState } from 'react';
-import useToken from '@lib/useToken';
 import { useRouter } from 'next/router';
 import { TransactionType } from '@interfaces/transaction';
 import { PointTopupType } from '@interfaces/pointTopup';
@@ -29,7 +28,7 @@ function getType(type : number) : string {
 
 export default function Home() {
   const router = useRouter();
-  const {token} = useToken();
+  
   const [user, setUser] = useState<UserType>(InitUserType);
 
   const [transaction, setTransaction] = useState<TransactionType[]>([]);
@@ -42,10 +41,10 @@ export default function Home() {
 
   useEffect(()=>{
     if (typeof(router.query.user) === "string")
-      createAdminUser(token, parseInt(router.query.user), setUser, setTransaction, setPointTopup, setPointChangeInfo);
+      createAdminUser(parseInt(router.query.user), setUser, setTransaction, setPointTopup, setPointChangeInfo);
   }, [router.query.user]);
 
-  const transactionThead = ['Date', 'Type', 'Total Price', 'PL rate', 'Point'];
+  const transactionThead = ['Date', 'Type', 'Position', 'Total Price', 'PL rate', 'Point'];
   const pointTopupThead = ['Date', 'Amount', 'Tag', 'State'];
   const pointChangeInfoThead = ['Date', 'Type', 'Amount', 'Detail'];
 
@@ -56,6 +55,7 @@ export default function Home() {
       new_transaction.push([
         row.date,
         row.type,
+        row.position,
         row.total_price,
         row.profit_loss_rate+" %",
         row.point

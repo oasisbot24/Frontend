@@ -3,7 +3,6 @@ import Table from '@components/table/table';
 import TableController from '@components/table/tableController';
 import TableNav from '@components/table/tableNav';
 import { useState, useEffect } from 'react';
-import useToken from '@lib/useToken';
 import { UserType } from '@interfaces/user';
 import Link from 'next/link';
 import Icon from '@components/basic/icon';
@@ -21,9 +20,9 @@ export default function Home() {
   const thead = ["index", "Type", "Name", "Phone Number", "Point", "Commision Rate", "Hold NFT", "Control"];
   const [tbody, setTbody] = useState<any[][]>([]);
   const [users, setUsers] = useState<UserType[]>([]);
-  const {token} = useToken();
+  
   useEffect(()=>{
-    createAdminUsers(token, setUsers);
+    createAdminUsers(setUsers);
   }, []);
   useEffect(()=>{
     const new_tbody : any[][] = [];

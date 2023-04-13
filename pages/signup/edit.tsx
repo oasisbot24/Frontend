@@ -7,7 +7,6 @@ import { checkPassword, checkPhone, checkNickName } from '@lib/check';
 import { AxiosError } from 'axios';
 import router from "next/router";
 import Link from 'next/link';
-import useToken from '@lib/useToken';
 import { PutUserType, UserType } from '@interfaces/user';
 import { useEffect, useState } from 'react';
 import { createEdit } from '@lib/page/user';
@@ -22,10 +21,9 @@ interface SignupFormType extends PutUserType {
 export default function Home() {
   const { register, handleSubmit, setValue, setError, formState: { errors } } = useForm<SignupFormType>();
   const [ user, setUser ] = useState<UserType>(InitUserType);
-  const { token } = useToken();
   const submitHandler = async (data : SignupFormType) => {
     try {
-      await putUser(data, token);
+      await putUser(data);
       router.push("/transaction");
     } catch (error) {
       const axiosError = error as AxiosError<any, any>;
@@ -35,7 +33,7 @@ export default function Home() {
     }
   };
   useEffect(() => {
-    createEdit(token, setUser);
+    createEdit(setUser);
   }, [])
 
   useEffect(() => {

@@ -2,7 +2,7 @@ import Title from '@components/user/title'
 import Card from '@components/user/card'
 import UserFrame from '@components/user/userFrame'
 import { useForm } from 'react-hook-form';
-import { postUser } from '@api/user/user';
+import postSignup from '@api/signup';
 import { PostUserType } from '@interfaces/user';
 import { checkEmail, checkPassword, checkPhone, checkNickName } from '@lib/check';
 import { AxiosError } from 'axios';
@@ -22,7 +22,7 @@ export default function Home() {
   const submitHandler = async (data : SignupFormType) => {
     try {
       setSubmitted(true);
-      await postUser(data);
+      await postSignup(data);
       router.push("/signup/success");
     } catch (error) {
       setSubmitted(false);

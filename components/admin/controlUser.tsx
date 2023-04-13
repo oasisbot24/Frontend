@@ -3,7 +3,6 @@ import { PutAdminUserType, UserType } from '@interfaces/user';
 import { useForm } from 'react-hook-form';
 import { AxiosError } from 'axios';
 import { deleteAdminUser, putAdminUser } from "@api/admin/user";
-import useToken from '@lib/useToken';
 import { useEffect, useState } from 'react';
 import router from 'next/router';
 
@@ -13,13 +12,13 @@ type Props = {
 }
 
 const ControlUser = ({user, className}:Props) => {
-  const {token} = useToken();
+  
   const { register, handleSubmit, setValue, setError, formState: { errors } } = useForm<PutAdminUserType>();
   const [saved, setSaved] = useState("");
   const removeHandler = async () => {
     try {
       if (confirm("정말 삭제하시겠습니까?")){
-        await deleteAdminUser(user.id, token);
+        await deleteAdminUser(user.id);
         router.push("/admin/user");
       }
     } catch (error) {
@@ -39,7 +38,7 @@ const ControlUser = ({user, className}:Props) => {
       else if (data.commission_rate < 0 || data.nft < 0)
         setError("root", {type: "fail", message: "수수료율과 NFT는 0보다 작을 수 없습니다"});
       else {
-        await putAdminUser(user.id, data, token);
+        await putAdminUser(user.id, data);
         setSaved("저장되었습니다");
       }
     } catch (error) {

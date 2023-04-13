@@ -4,7 +4,6 @@ import TableController from '@components/table/tableController';
 import TableNav from '@components/table/tableNav';
 import { useState, useEffect } from 'react';
 import { PointChangeInfoType } from '@interfaces/pointChangeInfo';
-import useToken from '@lib/useToken';
 import { createAdminPointChangeInfos } from '@lib/page/adminPointChangeInfo';
 
 function getType(type : number) : string {
@@ -26,9 +25,9 @@ export default function Home() {
   const thead = ["index", "User", "Date", "Type", "Amount", "Detail"];
   const [tbody, setTbody] = useState<any[][]>([]);
   const [pointChangeInfos, setPointChangeInfos] = useState<PointChangeInfoType[]>([]);
-  const {token} = useToken();
+  
   useEffect(()=>{
-    createAdminPointChangeInfos(token, setPointChangeInfos);
+    createAdminPointChangeInfos(setPointChangeInfos);
   }, []);
   useEffect(()=>{
     const new_pointChangeInfos : any[][] = [];

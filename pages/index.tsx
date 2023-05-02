@@ -5,7 +5,6 @@ import UserFrame from "@components/user/userFrame";
 import Footer from "@components/user/contents/Footer";
 import Link from "next/link";
 import data from "@lib/data";
-import Image from "next/image";
 
 export default function Home() {
   const href = {

@@ -2,10 +2,10 @@
   &-background {
     &-dark {
       background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url("/background.png");
+        url("/background/background.png");
       background-repeat: no-repeat;
     }
-    background-image: url("/background.png");
+    background-image: url("/background/background.png");
     background-repeat: no-repeat;
   }
   nav {

@@ -13,9 +13,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "14.x"
+          node-version: "16.x"
       - name: Build
-        run: npm install -g yarn && yarn install --frozen-lockfile && yarn build
+        run: npm install && npm run build
       - name: AWS Login
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -23,6 +23,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Deploy
-        run: aws s3 sync ${{ secrets.BUILD_DIRECTORY }} s3://${{ secrets.AWS_S3_BUCKET_NAME }} --acl public-read --delete
+        run: aws s3 sync --acl public-read --delete ${{ secrets.BUILD_DIRECTORY }} s3://${{ secrets.AWS_S3_BUCKET_NAME }}
       - name: Cloudfront Invalidation
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+        run: aws cloudfront create-invalidation --paths "/*" --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}

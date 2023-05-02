@@ -7,7 +7,7 @@ on:
 jobs:
   continuous-deployment:
     runs-on: ubuntu-latest
-    step:
+    steps:
       - name: Git checkout
         uses: actions/checkout@v2
       - name: Setup Node.js

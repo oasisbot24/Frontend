@@ -25,4 +25,4 @@ jobs:
       - name: Deploy
         run: aws s3 sync ${{ secrets.BUILD_DIRECTORY }} s3://${{ secrets.AWS_S3_BUCKET_NAME }} --acl public-read --delete
       - name: Cloudfront Invalidation
-          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"

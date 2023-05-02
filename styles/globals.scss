@@ -3,130 +3,146 @@
 @tailwind utilities;
 
 body {
-	@apply bg-background;
-	overflow-x: hidden;
-	-ms-overflow-style: none;
-	scrollbar-width: none;
-	&::-webkit-scrollbar {
-	  display: none;
-	}
+  @apply bg-background;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 form {
-	label {
-		@apply text-xs text-red;
-	}
+  label {
+    @apply text-xs text-red;
+  }
 }
 
 input {
-	@apply rounded px-4;
-	&[type="text"], &[type="password"], &[type="email"], &[type="number"]{
-		@apply w-full h-[40px] text-xs sm:text-sm
+  @apply rounded px-4;
+  &[type="text"],
+  &[type="password"],
+  &[type="email"],
+  &[type="number"] {
+    @apply w-full h-[40px] text-xs sm:text-sm
 		focus:outline-none focus:border-blue-300 focus:ring-1 focus:ring-blue-300
 		disabled:bg-black disabled:text-gray-400 disabled:border disabled:border-gray-400 disabled:shadow-none;
-	}
-	&.error{
-		@apply ring-1 ring-red;
-	}
+  }
+  &.error {
+    @apply ring-1 ring-red;
+  }
 }
 
 hr {
-	@apply mb-6;
+  @apply mb-6;
 }
 
 .table_parent {
-	max-width: calc(100vw - 4rem);
-	overflow-x: auto;
-	&::-webkit-scrollbar {
-		height: 0;
-	}
+  max-width: calc(100vw - 4rem);
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+    height: 0;
+  }
 }
 
 table {
-	&.table_small {
-		@apply text-xs w-full min-w-[420px] text-center;
-		tr {
-			@apply text-xs h-[25px] leading-[25px];
-		}
-		thead {
-			@apply border-b-2 border-gray-500;
-		}
-		tbody {
-			tr {
-				@apply border-b border-gray-500;
-			}
-		}
-	}
-	&.table_admin {
-		@apply w-full min-w-[580px] text-left;
-		overflow-x: scroll;
-		tr {
-			@apply text-xs h-[50px] leading-[50px];
-		}
-		td, th{
-			@apply px-0 md:px-1 lg:px-4;
-			&:first-child {
-				@apply text-center;
-			}
-		}
-		thead{
-			@apply bg-blue-200 text-white shadow;
-			th {
-				&:first-child {
-					@apply rounded-tl;
-				}
-				&:last-child {
-					@apply rounded-tr;
-				}
-			}
-		}
-		tbody{
-			tr {
-				@apply border-b border-gray-300;
-				&:hover {
-					@apply bg-gray-100;
-				}
-			}
-		}
-	}
+  &.table_small {
+    @apply text-xs w-full min-w-[420px] text-center;
+    tr {
+      @apply text-xs h-[25px] leading-[25px];
+    }
+    thead {
+      @apply border-b-2 border-gray-500;
+    }
+    tbody {
+      tr {
+        @apply border-b border-gray-500;
+      }
+    }
+  }
+  &.table_admin {
+    @apply w-full min-w-[580px] text-left;
+    overflow-x: scroll;
+    tr {
+      @apply text-xs h-[50px] leading-[50px];
+    }
+    td,
+    th {
+      @apply px-0 md:px-1 lg:px-4;
+      &:first-child {
+        @apply text-center;
+      }
+    }
+    thead {
+      @apply bg-blue-200 text-white shadow;
+      th {
+        &:first-child {
+          @apply rounded-tl;
+        }
+        &:last-child {
+          @apply rounded-tr;
+        }
+      }
+    }
+    tbody {
+      tr {
+        @apply border-b border-gray-300;
+        &:hover {
+          @apply bg-gray-100;
+        }
+      }
+    }
+  }
 }
 
 .btn {
-	@apply text-sm text-center transition duration-300;
-	&-white {
-		@apply bg-white text-black;
-		&:hover {
-			@apply bg-gray-100;
-		}
-	}
-	&-gray-border {
-		@apply border border-gray-500;
-		&:hover {
-			@apply bg-gray-500 text-white;
-		}
-	}
-	&-red {
-		@apply bg-red text-white;
-		&:hover {
-			@apply bg-red-hover;
-		}
-	}
-	&-blue-200 {
-		@apply bg-blue-200 text-white;
-		&:hover {
-			@apply bg-blue-200-hover;
-		}
-	}
-	&-blue-300 {
-		@apply bg-blue-300 text-white;
-		&:hover {
-			@apply bg-blue-300-hover;
-		}
-	}
-	&-pink {
-		@apply bg-pink text-white;
-		&:hover {
-			@apply bg-pink-hover;
-		}
-	}
+  @apply text-sm text-center transition duration-300;
+  &-white {
+    @apply bg-white text-black;
+    &:hover {
+      @apply bg-gray-100;
+    }
+    &-border {
+      @apply border border-white;
+      &:hover {
+        @apply text-gray-300 border-gray-300;
+      }
+    }
+  }
+  &-gray-border {
+    @apply border border-gray-500;
+    &:hover {
+      @apply bg-gray-500 text-white;
+    }
+  }
+  &-red {
+    @apply bg-red text-white;
+    &:hover {
+      @apply bg-red-hover;
+    }
+  }
+  &-blue-200 {
+    @apply bg-blue-200 text-white;
+    &:hover {
+      @apply bg-blue-200-hover;
+    }
+  }
+  &-blue-300 {
+    @apply bg-blue-300 text-white;
+    &:hover {
+      @apply bg-blue-300-hover;
+    }
+    &-border {
+      @apply border border-blue-300;
+      &:hover {
+        @apply bg-blue-300;
+      }
+    }
+  }
+  &-pink {
+    @apply bg-pink text-white;
+    &:hover {
+      @apply bg-pink-hover;
+    }
+  }
 }

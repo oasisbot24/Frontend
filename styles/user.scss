@@ -1,87 +1,89 @@
 .user {
-	&-background {
-		&-dark {
-			background : linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("/background.png");
-			background-repeat : no-repeat;
-		}
-		background-image: url("/background.png");
-		background-repeat : no-repeat;
-	}
-	nav {
-		@apply min-h-[100px];
-		.menubutton {
-			@apply inline-flex items-center p-2 text-sm text-gray-300 rounded-lg md:hidden 
+  &-background {
+    &-dark {
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("/background.png");
+      background-repeat: no-repeat;
+    }
+    background-image: url("/background.png");
+    background-repeat: no-repeat;
+  }
+  nav {
+    @apply min-h-[100px];
+    .menubutton {
+      @apply inline-flex items-center p-2 text-sm text-gray-300 rounded-lg md:hidden 
 			hover:bg-black hover:ring-1 hover:ring-gray-500 focus:bg-black focus:ring-1 focus:ring-gray-500;
-		}
-		.menubox {
-			@apply w-full md:flex md:w-auto text-white font-medium;
-			overflow-y: hidden;
-			transition: all .3s;
-		}
-	}
-	input{
-		@apply bg-gray-500; 
-	}
-	.container {
-		min-height: calc(100vh - 150px);
-	}
-	.card {
-		@apply bg-card rounded text-white flex flex-col border border-gray-500;
-	}
-	.contact {
-		z-index: 100;
-		position: fixed;
-		bottom: 1rem;
-		right: 1rem;
-		transition: all .5s;
-		img {
-			transform: rotate( 270deg );
-			transition: all .7s;
-		}
-		&[aria-expanded="true"] {
-			right: -13rem;
-			img {
-				transform: rotate( 90deg );
-				transition: all .7s;
-			}
-		}
-		.contact-bg {
-			@apply bg-black rounded-full flex border border-gray-500;
-		 	padding: 0.4rem 0.6rem;
-		}
-		p {
-			@apply text-sm text-gray-200 my-auto;
-		}
-		.icon {
-			@apply flex mx-2;
-			a {
-				transition: .3s;
-				@apply block text-white h-fit my-auto;
-				&:hover {
-					@apply text-blue-150;
-				}
-			}
-		}
-	}
+    }
+    .menubox {
+      @apply w-full md:flex md:w-auto text-white font-medium;
+      overflow-y: hidden;
+      transition: all 0.3s;
+    }
+  }
+  input {
+    @apply bg-gray-500;
+  }
+  .container {
+    min-height: calc(100vh - 150px);
+  }
+  .card {
+    @apply bg-card rounded text-white flex flex-col border border-gray-500;
+  }
+  .contact {
+    width: 250px;
+    z-index: 100;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    transition: all 0.5s;
+    .arrow {
+      transform: rotate(270deg);
+      transition: all 0.7s;
+    }
+    &[aria-expanded="true"] {
+      right: -13rem;
+      img {
+        transform: rotate(90deg);
+        transition: all 0.7s;
+      }
+    }
+    .contact-bg {
+      @apply bg-black rounded-full flex border border-gray-500;
+      padding: 0.4rem 0.6rem;
+    }
+    p {
+      @apply text-sm text-gray-200 my-auto;
+    }
+    .icon {
+      @apply flex mx-2;
+      a {
+        transition: 0.3s;
+        @apply block text-white h-fit my-auto;
+        &:hover {
+          @apply text-blue-150;
+        }
+      }
+    }
+  }
 
-	.highlight {
-		@keyframes animate-text-plus {
-			0% {
-				@apply text-green;
-			}
-		}
-		@keyframes animate-text-minus {
-			0% {
-				@apply text-red;
-			}
-		}
-		&-text{
-			&-plus {
-				animation: animate-text-plus 1.5s ease-in;
-			}
-			&-minus {
-				animation: animate-text-minus 1.5s ease-in;
-			}
-		} 
-  	}
+  .highlight {
+    @keyframes animate-text-plus {
+      0% {
+        @apply text-green;
+      }
+    }
+    @keyframes animate-text-minus {
+      0% {
+        @apply text-red;
+      }
+    }
+    &-text {
+      &-plus {
+        animation: animate-text-plus 1.5s ease-in;
+      }
+      &-minus {
+        animation: animate-text-minus 1.5s ease-in;
+      }
+    }
+  }
 }

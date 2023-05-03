@@ -27,10 +27,10 @@ const Meta = () => {
       <meta name="reply-to" content="teamprivateclub@gmail.com" />
       <meta name="content-language" content="kr" />
       <meta name="content-language" content="en" />
-      <meta property="og:url" content="https://www.oasisbot24.com/" />
+      <meta property="og:url" content="https://home.oasisbot24.com/" />
       <meta property="og:title" content="OASIS" />
       <meta property="og:type" content="website" />
-      <meta property="og:image" content="/static/static/logo/logo_share.jpg" />
+      <meta property="og:image" content="/static/logo/logo_share.jpg" />
       <meta
         property="og:description"
         content="OASIS : Your Optimus Bot, 오아시스 봇으로 가상화폐 자동매매를 경험해보세요."
@@ -40,7 +40,7 @@ const Meta = () => {
         name="twitter:description"
         content="OASIS : Your Optimus Bot, 오아시스 봇으로 가상화폐 자동매매를 경험해보세요."
       />
-      <meta name="twitter:image" content="/static/static/logo/logo_share.jpg" />
+      <meta name="twitter:image" content="/static/logo/logo_share.jpg" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta
         name="naver-site-verification"
@@ -52,8 +52,8 @@ const Meta = () => {
       ></script>
       <script dangerouslySetInnerHTML={{ __html: googleFunction }}></script>
 
-      <link rel="icon" href="/static/static/icon/favicon.svg" />
-      <link rel="apple-touch-icon" href="/static/static/icon/favicon.svg" />
+      <link rel="icon" href="/static/icon/favicon.svg" />
+      <link rel="apple-touch-icon" href="/static/icon/favicon.svg" />
       <meta
         name="viewport"
         content="width=device-width,initial-scale=1,user-scalable=no"

@@ -27,6 +27,7 @@ const Meta = () => {
       <meta name="reply-to" content="teamprivateclub@gmail.com" />
       <meta name="content-language" content="kr" />
       <meta name="content-language" content="en" />
+      <meta property="og:url" content="https://oasisbot24.com/" />
       <meta property="og:url" content="https://home.oasisbot24.com/" />
       <meta property="og:title" content="OASIS" />
       <meta property="og:type" content="website" />

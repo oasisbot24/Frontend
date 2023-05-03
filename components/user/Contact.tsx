@@ -21,11 +21,11 @@ export default function Contact() {
           }}
         >
           <Image
-            className="arrow w-fit"
+            className="arrow"
             src={arrow}
             alt="arrow"
-            width={30}
-            height={30}
+            width={32}
+            height={32}
           />
         </div>
         <div className="mx-1 flex flex-col">
@@ -34,7 +34,8 @@ export default function Contact() {
         <div className="icon">
           <a
             href="https://open.kakao.com/o/g2IECVff"
-            target="_black"
+            target="_blank"
+            rel="noreferrer"
             className="flex w-full"
           >
             <div className="w-fit">
@@ -45,7 +46,8 @@ export default function Contact() {
         <div className="icon">
           <a
             href="https://twitter.com/with_OASIS"
-            target="_black"
+            target="_blank"
+            rel="noreferrer"
             className="w-[1.2rem]"
           >
             <FontAwesomeIcon className="socialIcon" icon={faTwitter} />
@@ -54,7 +56,8 @@ export default function Contact() {
         <div className="icon">
           <a
             href="https://t.me/OASISYOB"
-            target="_black"
+            target="_blank"
+            rel="noreferrer"
             className="w-[1.1rem]"
           >
             <FontAwesomeIcon className="socialIcon" icon={faTelegram} />
@@ -62,7 +65,7 @@ export default function Contact() {
         </div>
         {/*
         <div className="icon">
-          <a href="https://discord.gg/6r44wVKYjb" target='_black' className="w-[1.35rem]"><FontAwesomeIcon className="socialIcon" icon={faDiscord} /></a>
+          <a href="https://discord.gg/6r44wVKYjb" target='_blank' className="w-[1.35rem]"><FontAwesomeIcon className="socialIcon" icon={faDiscord} /></a>
         </div>
         */}
       </div>

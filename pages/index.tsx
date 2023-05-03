@@ -21,7 +21,12 @@ export default function Home() {
           <br />
           BOT
         </div>
-        <a href={href.kakao} className="w-full sm:w-[400px] mb-4 sm:mb-8">
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href={href.kakao}
+          className="w-full sm:w-[400px] mb-4 sm:mb-8"
+        >
           <button className="btn btn-white-border rounded w-full h-[50px]">
             <div className="flex justify-center">
               <p className="my-auto">카카오톡 오픈채팅방 바로가기</p>

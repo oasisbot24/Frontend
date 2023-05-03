@@ -12,7 +12,14 @@ const Menu = (menuOpen: boolean, token: string) => {
         }
       >
         <div className="flex justify-end mt-4 md:mt-0 md:ml-6 hover:text-gray-300">
-          <a href="https://open.kakao.com/o/g2IECVff">카카오톡문의</a>
+          <a
+            className="my-auto"
+            target="_blank"
+            rel="noreferrer"
+            href="https://open.kakao.com/o/g2IECVff"
+          >
+            카카오톡문의
+          </a>
         </div>
         <div className="flex justify-end mt-4 md:mt-0 md:ml-6 hover:text-gray-300">
           <Link href="/pointshop" className="my-auto">
@@ -34,7 +41,14 @@ const Menu = (menuOpen: boolean, token: string) => {
         }
       >
         <div className="flex justify-end mt-4 md:mt-0 md:ml-6 hover:text-gray-300">
-          <a href="https://open.kakao.com/o/g2IECVff">카카오톡문의</a>
+          <a
+            className="my-auto"
+            target="_blank"
+            rel="noreferrer"
+            href="https://open.kakao.com/o/g2IECVff"
+          >
+            카카오톡문의
+          </a>
         </div>
         <div className="flex justify-end mt-4 md:mt-0 md:ml-6 hover:text-gray-300">
           <Link href="/signin" className="my-auto">

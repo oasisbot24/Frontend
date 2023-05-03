@@ -1,10 +1,10 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
+  "name": "oasisbot24-page",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export && next-export-optimize-images",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint"
   },

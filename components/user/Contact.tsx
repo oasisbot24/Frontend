@@ -9,7 +9,7 @@ import Image from "next/image";
 import Icon from "@components/basic/icon";
 
 export default function Contact() {
-  const arrow = "/images/arrow.png";
+  const arrow = "/static/images/arrow.png";
   const [contactOpen, setContactOpen] = useState(true);
   return (
     <div className="contact" aria-expanded={contactOpen}>
@@ -39,7 +39,12 @@ export default function Contact() {
             className="flex w-full"
           >
             <div className="w-fit">
-              <Image src="/icon/kakao.png" alt="kakao" width={22} height={22} />
+              <Image
+                src="/static/icon/kakao.png"
+                alt="kakao"
+                width={22}
+                height={22}
+              />
             </div>
           </a>
         </div>

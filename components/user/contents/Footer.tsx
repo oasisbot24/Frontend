@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 function Footer() {
-  const logo = "/logo/logo_square.png";
+  const logo = "/static/logo/logo_square.png";
   return (
     <footer>
       <div className="flex flex-col md:flex-row mx-0 py-8">

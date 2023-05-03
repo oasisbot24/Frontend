@@ -8,7 +8,7 @@ export default function NftCard() {
     <Card className="w-full h-full sm:mr-2 p-4 mb-4 sm:mb-0">
       <Image
         alt="nft-image"
-        src="/images/nft.png"
+        src="/static/images/nft.png"
         className="w-full max-w-[200px] rounded-lg mx-auto mb-4"
         width={100}
         height={100}

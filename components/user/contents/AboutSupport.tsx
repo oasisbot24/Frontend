@@ -9,7 +9,7 @@ function AboutSupport() {
       <div className="flex justify-around pt-12">
         <div className="text-center mr-4 lg:mr-0">
           <Image
-            src="/images/upbit.png"
+            src="/static/images/upbit.png"
             className="rounded-lg"
             alt="upbit"
             width={240}
@@ -19,7 +19,7 @@ function AboutSupport() {
         </div>
         <div className="text-center">
           <Image
-            src="/images/lbank.png"
+            src="/static/images/lbank.png"
             className="rounded-lg"
             alt="upbit"
             width={240}

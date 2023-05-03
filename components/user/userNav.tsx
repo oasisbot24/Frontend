@@ -79,7 +79,12 @@ const UserNav = () => {
     <nav className="flex">
       <div className="flex flex-wrap items-center justify-between align-middle w-full px-8 mt-6 mb-6">
         <Link href="/">
-          <Image alt="oasis" src="/logo/logo.png" width={170} height={50} />
+          <Image
+            alt="oasis"
+            src="/static/logo/logo.png"
+            width={170}
+            height={50}
+          />
         </Link>
 
         <button
